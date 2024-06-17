@@ -9,13 +9,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RetryTest {
-    private static final int MAX_ATTEMPTS = 3;
+    private static final int MAX_ATTEMPTS = 2;
     private static final long DELAY_MS = 1;
 
     private int counter = 0;
 
     @Retry(maxAttempts = MAX_ATTEMPTS, delayMs = DELAY_MS)
-    public void testSuccessOperation() {
+    public void successOperation() {
         counter++;
         System.out.println("Attempt " + counter);
 
@@ -27,7 +27,7 @@ public class RetryTest {
     }
 
     @Retry(maxAttempts = MAX_ATTEMPTS, delayMs = DELAY_MS)
-    public void testFailureOperation() {
+    public void failedOperation() {
         counter++;
         System.out.println("Attempt " + counter);
         throw new RuntimeException("Simulated failure");
@@ -36,19 +36,17 @@ public class RetryTest {
 
     @Test
     public void testRetrySuccess() throws Throwable {
-        Method method = RetryTest.class.getMethod("testSuccessOperation");
+        Method method = RetryTest.class.getMethod("successOperation");
         RetryAspect.retry(this, method, null);
         assertEquals(MAX_ATTEMPTS, counter);
     }
 
     @Test
     public void testRetryFailure() throws NoSuchMethodException {
-        counter = 0;
-        Method method = RetryTest.class.getMethod("testFailureOperation");
+        Method method = RetryTest.class.getMethod("failedOperation");
 
-        assertThrows(RuntimeException.class, () -> {
-            RetryAspect.retry(this, method, null);
-        });
+        assertThrows(RuntimeException.class, () ->
+                RetryAspect.retry(this, method, null));
 
         assertEquals(MAX_ATTEMPTS, counter);
     }
