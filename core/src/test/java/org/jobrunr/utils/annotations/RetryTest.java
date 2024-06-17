@@ -15,7 +15,7 @@ public class RetryTest {
     private int counter = 0;
 
     @Retry(maxAttempts = MAX_ATTEMPTS, delayMs = DELAY_MS)
-    public void successOperation() {
+    public void successOperationOnLastRetry() {
         counter++;
         System.out.println("Attempt " + counter);
 
@@ -36,7 +36,7 @@ public class RetryTest {
 
     @Test
     public void testRetrySuccess() throws Throwable {
-        Method method = RetryTest.class.getMethod("successOperation");
+        Method method = RetryTest.class.getMethod("successOperationOnLastRetry");
         RetryAspect.retry(this, method, null);
         assertEquals(MAX_ATTEMPTS, counter);
     }
