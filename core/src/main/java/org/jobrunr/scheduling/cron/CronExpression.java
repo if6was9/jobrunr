@@ -9,6 +9,7 @@ import java.time.Month;
 import java.time.Year;
 import java.time.YearMonth;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.BitSet;
 
 /**
@@ -302,7 +303,7 @@ public class CronExpression extends Schedule {
         if (this.daysAndDaysOfWeekRelation == DaysAndDaysOfWeekRelation.UNION || this.days.nextSetBit(0) < 29)
             return true;
 
-        int aYear = LocalDateTime.now().getYear();
+        Year aYear = Year.now(ZoneOffset.UTC);
         for (int dayIndex = 29; dayIndex < 31; dayIndex++) {
             if (!this.days.get(dayIndex))
                 continue;
@@ -311,7 +312,7 @@ public class CronExpression extends Schedule {
                 if (!this.months.get(monthIndex))
                     continue;
 
-                if (dayIndex + 1 <= YearMonth.of(aYear, monthIndex).lengthOfMonth())
+                if (dayIndex + 1 <= aYear.atMonth(monthIndex).lengthOfMonth())
                     return true;
             }
         }

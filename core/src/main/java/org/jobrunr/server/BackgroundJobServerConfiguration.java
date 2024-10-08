@@ -22,7 +22,7 @@ public class BackgroundJobServerConfiguration {
     public static final int DEFAULT_SERVER_TIMEOUT_POLL_INTERVAL_MULTIPLICAND = 4;
     public static final int DEFAULT_PAGE_REQUEST_SIZE = 1000;
     public static final Duration DEFAULT_DELETE_SUCCEEDED_JOBS_DURATION = Duration.ofHours(36);
-    public static final Duration DEFAULT_PERMANENTLY_DELETE_JOBS_DURATION = Duration.ofHours(72);
+    public static final Duration DEFAULT_PERMANENTLY_DELETE_JOBS_DURATION = Duration.ofDays(3);
     public static final Duration DEFAULT_INTERRUPT_JOBS_AWAIT_DURATION_ON_STOP_BACKGROUND_JOB_SERVER = Duration.ofSeconds(10);
 
     int scheduledJobsRequestSize = DEFAULT_PAGE_REQUEST_SIZE;

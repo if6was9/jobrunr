@@ -21,7 +21,7 @@ public class RedisUtilities {
     }
 
     /**
-     * @deprecated: still in use for Migrations
+     * @deprecated still in use for Migrations
      */
     @Deprecated
     public static String jobCounterKey(StateName stateName) {

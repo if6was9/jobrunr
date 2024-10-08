@@ -6,7 +6,12 @@ import org.jobrunr.jobs.lambdas.IocJobLambdaFromStream;
 import org.jobrunr.jobs.lambdas.JobLambda;
 import org.jobrunr.jobs.lambdas.JobLambdaFromStream;
 
-import java.time.*;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.UUID;
 import java.util.stream.Stream;
 
@@ -25,6 +30,7 @@ public class BackgroundJob {
 
     /**
      * Creates a new {@link org.jobrunr.jobs.Job} using a {@link JobBuilder} that can be enqueued or scheduled and provides an alternative to the job annotation.
+     *
      * @param jobBuilder the jobBuilder with all the details of the job
      * @return the id of the job
      */
@@ -433,7 +439,7 @@ public class BackgroundJob {
     }
 
     /**
-     * @see #delete(UUID)
+     * *See {@link #delete(UUID)}.
      */
     public static void delete(JobId jobId) {
         delete(jobId.asUUID());

@@ -27,6 +27,7 @@ import java.util.stream.Stream;
 import static java.lang.Long.parseLong;
 import static java.util.Arrays.asList;
 import static java.util.Comparator.comparing;
+import static java.util.Comparator.comparingInt;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 import static org.jobrunr.jobs.states.StateName.DELETED;
@@ -341,7 +342,7 @@ public class InMemoryStorageProvider extends AbstractStorageProvider {
                 .collect(toList());
         return comparators.stream()
                 .reduce(Comparator::thenComparing)
-                .orElse((a, b) -> 0); // default order
+                .orElse(comparingInt(x -> 0)); // default order
     }
 
 }

@@ -78,6 +78,7 @@ public class JobTable extends Sql<Job> {
         return this;
     }
 
+    @Override
     public JobTable with(String columnName, String sqlName, String value) {
         if (asSet(FIELD_CREATED_AT, FIELD_UPDATED_AT, FIELD_SCHEDULED_AT).contains(columnName)) {
             with(sqlName, Instant.parse(value));

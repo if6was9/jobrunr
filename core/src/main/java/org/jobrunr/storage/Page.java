@@ -37,8 +37,8 @@ public class Page<T> {
         this.currentPage = currentPageNo;
         this.hasPrevious = previousPage != null;
         this.hasNext = nextPage != null;
-        this.previousPage = (hasPrevious) ? previousPage.asString() : null;
-        this.nextPage = (hasNext) ? nextPage.asString() : null;
+        this.previousPage = hasPrevious ? previousPage.asString() : null;
+        this.nextPage = hasNext ? nextPage.asString() : null;
         this.items = new ArrayList<>(items);
     }
 

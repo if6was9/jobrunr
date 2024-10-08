@@ -386,6 +386,7 @@ public class BackgroundJobServer implements BackgroundJobServerMBean {
 
     static class BackgroundJobServerLifecycleLock {
         interface LifeCycleLock extends AutoCloseable {
+            @Override
             void close();
         }
 

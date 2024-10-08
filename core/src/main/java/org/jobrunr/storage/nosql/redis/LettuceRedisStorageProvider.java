@@ -85,6 +85,8 @@ import static org.jobrunr.utils.resilience.RateLimiter.Builder.rateLimit;
 import static org.jobrunr.utils.resilience.RateLimiter.SECOND;
 
 @Beta
+@Deprecated
+@SuppressWarnings("all")
 public class LettuceRedisStorageProvider extends AbstractStorageProvider implements NoSqlStorageProvider {
 
     private final ObjectPool<StatefulRedisConnection<String, String>> pool;

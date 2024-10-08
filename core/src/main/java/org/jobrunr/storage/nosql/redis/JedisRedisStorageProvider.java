@@ -75,6 +75,7 @@ import static org.jobrunr.utils.resilience.RateLimiter.SECOND;
 
 @Beta
 @Deprecated
+@SuppressWarnings("all")
 public class JedisRedisStorageProvider extends AbstractStorageProvider implements NoSqlStorageProvider {
 
     private final JedisPool jedisPool;
